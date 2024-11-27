@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FetchData } from './components/FetchData'
 import { FeatchDataInputBtn } from './components/FeatchDataInputBtn'
-import { FetchDataPagination } from './components/FetchDataPagination'
+import { FetchDataPagination } from './components/FetchDataPagination/FetchDataPagination'
 
 
 function App() {
