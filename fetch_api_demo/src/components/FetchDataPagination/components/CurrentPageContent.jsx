@@ -1,8 +1,5 @@
-import { PaginationContext } from "./PaginationContext";
-import { useContext } from "react";
+export const CurrentPageContent = ({currentPage, currentItems}) => {
 
-export const CurrentPageContent = () => {
-    const {currentPage, currentItems} = useContext(PaginationContext);
 
     return (
         <>
