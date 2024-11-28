@@ -12,6 +12,7 @@ const App = () => {
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["posts"],
+    initialData: [],
     queryFn: async () => {
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/posts"
@@ -23,13 +24,9 @@ const App = () => {
     },
   });
 
-  const maxPage = useMemo(
-    () => (data ? Math.ceil(data.length / itemsPerPage) : 0),
-    [data]
-  );
+  const maxPage = useMemo(() => Math.ceil(data.length / itemsPerPage), [data]);
 
   const currentItemsMemo = useMemo(() => {
-    if (!data) return [];
     const indexEnd = currentPage * itemsPerPage;
     const indexStart = indexEnd - itemsPerPage;
     return data.slice(indexStart, indexEnd);
