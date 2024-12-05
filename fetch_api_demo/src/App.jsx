@@ -37,6 +37,7 @@ const App = () => {
 
   return (
     <>
+    <div className="mx-auto max-w-3xl space-y-8 min-h-screen bg-background p-6 md:p-12">
       <CurrentPageContent items={currentItemsMemo} currentPage={currentPage} />
       <PageControls
         setCurrentPage={setCurrentPage}
@@ -45,10 +46,12 @@ const App = () => {
         maxPage={maxPage}
       />
       <Pagination
+        minPage={minPage}
         maxPage={maxPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
+    </div>
     </>
   );
 };

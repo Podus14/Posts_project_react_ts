@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 
 export const Pagination = ({
+  minPage,
   maxPage,
   currentPage,
   setCurrentPage,
@@ -79,10 +80,21 @@ export const Pagination = ({
       return
   };
 
+  const handleClickPrev = () => {
+    setCurrentPage((currentPage) => currentPage - 1);
+  };
+
+  const handleClickNext = () => {
+    setCurrentPage((currentPage) => currentPage + 1);
+  };
+
   if (maxPage <= 1) return null;
 
   return (
-    <div role="navigation" aria-label="Pagination">
+    <div role="navigation" aria-label="Pagination" className="flex gap-4">
+      <button onClick={handleClickPrev} disabled={currentPage <= minPage} className="rounded-md hover:bg-gray-300 px-4 py-2 font-mono">
+        {'< Previous'}
+      </button>
       <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
         {visibleButtons.map((button, index) => {
           if (button === "left-dots" || button === "right-dots") {
@@ -92,16 +104,10 @@ export const Pagination = ({
                 onClick={() =>
                   handleEllipsisClick(button === "left-dots" ? "left" : "right")
                 }
-                style={{
-                  padding: "4px 8px",
-                  border: "1px solid #ddd",
-                  background: "white",
-                  cursor: "pointer",
-                  borderRadius: "4px",
-                }}
                 aria-label={`Jump ${
                   button === "left-dots" ? "backward" : "forward"
                 }`}
+               className="rounded-md px-2 py-1 font-mono bg-white hover:bg-gray-300"
               >
                 ...
               </button>
@@ -114,19 +120,16 @@ export const Pagination = ({
               key={pageNumber}
               onClick={() => setCurrentPage(pageNumber)}
               aria-current={currentPage === pageNumber ? "page" : undefined}
-              style={{
-                padding: "4px 8px",
-                border: "1px solid #ddd",
-                background: currentPage === pageNumber ? "#eee" : "white",
-                cursor: "pointer",
-                borderRadius: "4px",
-              }}
+               className={`rounded-md px-2 py-1 font-mono ${currentPage === pageNumber ? "bg-gray-300 hover:bg-gray-200" : "bg-white hover:bg-gray-300"}`}
             >
               {pageNumber}
             </button>
           );
         })}
       </div>
+      <button onClick={handleClickNext} disabled={currentPage >= maxPage} className="rounded-md hover:bg-gray-300 px-4 py-2 font-mono">
+        {'Next >'}
+      </button>
     </div>
   );
 };

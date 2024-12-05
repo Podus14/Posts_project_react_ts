@@ -2,7 +2,6 @@ import { useRef } from "react";
 
 export const PageControls = ({
   setCurrentPage,
-  currentPage,
   minPage,
   maxPage,
 }) => {
@@ -15,39 +14,22 @@ export const PageControls = ({
     setCurrentPage(parsedPage);
   };
 
-  const handleClickPrev = () => {
-    setCurrentPage((currentPage) => currentPage - 1);
-  };
-
-  const handleClickNext = () => {
-    setCurrentPage((currentPage) => currentPage + 1);
-  };
-
   return (
-    <div style={{ display: "flex" }}>
-      <form
+      <form className="flex flex-wrap gap-4"
         onSubmit={(e) => {
           e.preventDefault();
           handleClickSearch();
         }}
       >
         <input
-          style={{ width: "165px" }}
+          className="w-[200px] border-2	rounded-md border-black hover:border-gray-300 pl-2 font-mono"
           type="number"
           min={1}
-          max={20}
-          placeholder="Введіть номер сторінки"
+          max={maxPage}
+          placeholder="Enter page number"
           ref={searchInput}
         />
-        <button type="submit">Пошук сторінки</button>
+        <button className="text-white bg-black rounded-md px-4 py-2" type="submit">Go to Page</button>
       </form>
-
-      <button onClick={handleClickPrev} disabled={currentPage <= minPage}>
-        Попередня сторінка
-      </button>
-      <button onClick={handleClickNext} disabled={currentPage >= maxPage}>
-        Наступна сторінка
-      </button>
-    </div>
   );
 };
