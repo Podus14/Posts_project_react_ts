@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import cn from "../utils/classNames";
 
 export const Pagination = ({
   minPage,
@@ -91,11 +92,11 @@ export const Pagination = ({
   if (maxPage <= 1) return null;
 
   return (
-    <div role="navigation" aria-label="Pagination" className="flex gap-4">
-      <button onClick={handleClickPrev} disabled={currentPage <= minPage} className="rounded-md hover:bg-gray-300 px-4 py-2 font-mono">
-        {'< Previous'}
+    <div role="navigation" aria-label="Pagination" className="flex place-content-center gap-4">
+      <button onClick={handleClickPrev} disabled={currentPage <= minPage} className={cn("rounded-md px-4 py-2 font-mono", currentPage <= minPage ? "bg-gray-400 cursor-not-allowed " : "bg-white hover:bg-gray-300")}>
+        {'<'} Previous
       </button>
-      <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
+      <div className="flex">
         {visibleButtons.map((button, index) => {
           if (button === "left-dots" || button === "right-dots") {
             return (
@@ -120,15 +121,15 @@ export const Pagination = ({
               key={pageNumber}
               onClick={() => setCurrentPage(pageNumber)}
               aria-current={currentPage === pageNumber ? "page" : undefined}
-               className={`rounded-md px-2 py-1 font-mono ${currentPage === pageNumber ? "bg-gray-300 hover:bg-gray-200" : "bg-white hover:bg-gray-300"}`}
+              className={cn("rounded-md px-2 py-1 font-mono", currentPage === pageNumber ? "bg-gray-300 hover:bg-gray-200" : "bg-white hover:bg-gray-300")}
             >
               {pageNumber}
             </button>
           );
         })}
       </div>
-      <button onClick={handleClickNext} disabled={currentPage >= maxPage} className="rounded-md hover:bg-gray-300 px-4 py-2 font-mono">
-        {'Next >'}
+      <button onClick={handleClickNext} disabled={currentPage >= maxPage} className={cn("rounded-md px-4 py-2 font-mono", currentPage >= maxPage ? "bg-gray-400 cursor-not-allowed " : "bg-white hover:bg-gray-300")}>
+        Next {'>'}
       </button>
     </div>
   );

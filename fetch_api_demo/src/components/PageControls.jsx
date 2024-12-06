@@ -15,14 +15,14 @@ export const PageControls = ({
   };
 
   return (
-      <form className="flex flex-wrap gap-4"
+      <form className="flex flex-wrap place-content-between"
         onSubmit={(e) => {
           e.preventDefault();
           handleClickSearch();
         }}
       >
         <input
-          className="w-[200px] border-2	rounded-md border-black hover:border-gray-300 pl-2 font-mono"
+          className="w-9/12 border-2	rounded-md border-black hover:border-gray-300 pl-2 font-mono"
           type="number"
           min={1}
           max={maxPage}
