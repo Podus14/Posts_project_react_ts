@@ -29,7 +29,7 @@ export const PageControls = ({
           placeholder="Enter page number"
           ref={searchInput}
         />
-        <button className="text-white bg-black rounded-md px-4 py-2" type="submit">Go to Page</button>
+        <button className="text-white bg-black rounded-md px-4 py-2 hover:bg-gray-400 hover:text-black" type="submit">Go to Page</button>
       </form>
   );
 };

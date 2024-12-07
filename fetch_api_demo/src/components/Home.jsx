@@ -2,13 +2,29 @@ import { useMemo, useState } from "react";
 import { CurrentPageContent } from "./components/CurrentPageContent.jsx";
 import { PageControls } from "./components/PageControls.jsx";
 import { Pagination } from "./components/PaginationNew.jsx";
+import { useQuery } from "@tanstack/react-query";
 
 
 const itemsPerPage = 5;
 const minPage = 1;
 
-export const Home = ( {data, isPending, isError, error} ) => {
+export const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
+
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["posts"],
+    initialData: [],
+    queryFn: async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      if (!response.ok) {
+        throw new Error("Помилка завантаження даних з серверу");
+      }
+      return await response.json();
+    },
+  });
+
 
   const maxPage = useMemo(() => Math.ceil(data.length / itemsPerPage), [data]);
 
