@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import cn from "../utils/classNames";
+import cn from "../../utils/classNames";
 
 export const Pagination = ({
   minPage,
