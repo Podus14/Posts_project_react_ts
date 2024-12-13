@@ -3,6 +3,8 @@ import { CurrentPageContent } from "./components/CurrentPageContent.tsx";
 import { PageControls } from "./components/PageControls.tsx";
 import { Pagination } from "./components/PaginationNew.tsx";
 import { useQuery } from "@tanstack/react-query";
+import { Post } from "../types/typePost";
+
 
 
 const itemsPerPage = 5;
@@ -11,7 +13,8 @@ const minPage = 1;
 export const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isPending, isError, error } = useQuery({
+
+  const { data, isPending, isError, error } = useQuery<Post[]>({
     queryKey: ["posts"],
     initialData: [],
     queryFn: async () => {

@@ -1,11 +1,5 @@
 import { Link } from "react-router";
-
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-}
+import { Post } from "../../types/typePost";
 
 export const CurrentPageContent = ({ currentPage, items }: {currentPage: number, items: Post[] }) => {
   return (
